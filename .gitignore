@@ -1,0 +1,6 @@
+.gradle
+.idea
+build/classes
+build/kotlin
+build/tmp
+build/snapshot
