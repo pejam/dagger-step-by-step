@@ -1,6 +1,7 @@
 package ir.mpprog.dagger;
 
 import dagger.internal.DaggerGenerated;
+import dagger.internal.Preconditions;
 import javax.annotation.Generated;
 
 @DaggerGenerated
@@ -13,10 +14,12 @@ import javax.annotation.Generated;
     "rawtypes"
 })
 public final class DaggerAppComponent implements AppComponent {
+  private final AppModule appModule;
+
   private final DaggerAppComponent appComponent = this;
 
-  private DaggerAppComponent() {
-
+  private DaggerAppComponent(AppModule appModuleParam) {
+    this.appModule = appModuleParam;
 
   }
 
@@ -29,7 +32,7 @@ public final class DaggerAppComponent implements AppComponent {
   }
 
   private Repository repository() {
-    return new Repository(new Capitalizer());
+    return new Repository(AppModule_ProvideCapitalizerFactory.provideCapitalizer(appModule));
   }
 
   @Override
@@ -43,11 +46,21 @@ public final class DaggerAppComponent implements AppComponent {
   }
 
   public static final class Builder {
+    private AppModule appModule;
+
     private Builder() {
     }
 
+    public Builder appModule(AppModule appModule) {
+      this.appModule = Preconditions.checkNotNull(appModule);
+      return this;
+    }
+
     public AppComponent build() {
-      return new DaggerAppComponent();
+      if (appModule == null) {
+        this.appModule = new AppModule();
+      }
+      return new DaggerAppComponent(appModule);
     }
   }
 }
