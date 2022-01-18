@@ -16,23 +16,23 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class MyApplication_MembersInjector implements MembersInjector<MyApplication> {
-  private final Provider<Repository> repositoryProvider;
+  private final Provider<IRepository> iRepositoryProvider;
 
-  public MyApplication_MembersInjector(Provider<Repository> repositoryProvider) {
-    this.repositoryProvider = repositoryProvider;
+  public MyApplication_MembersInjector(Provider<IRepository> iRepositoryProvider) {
+    this.iRepositoryProvider = iRepositoryProvider;
   }
 
-  public static MembersInjector<MyApplication> create(Provider<Repository> repositoryProvider) {
-    return new MyApplication_MembersInjector(repositoryProvider);
+  public static MembersInjector<MyApplication> create(Provider<IRepository> iRepositoryProvider) {
+    return new MyApplication_MembersInjector(iRepositoryProvider);
   }
 
   @Override
   public void injectMembers(MyApplication instance) {
-    injectRepository(instance, repositoryProvider.get());
+    injectIRepository(instance, iRepositoryProvider.get());
   }
 
-  @InjectedFieldSignature("ir.mpprog.dagger.MyApplication.repository")
-  public static void injectRepository(MyApplication instance, Repository repository) {
-    instance.repository = repository;
+  @InjectedFieldSignature("ir.mpprog.dagger.MyApplication.iRepository")
+  public static void injectIRepository(MyApplication instance, IRepository iRepository) {
+    instance.iRepository = iRepository;
   }
 }

@@ -2,6 +2,8 @@ package ir.mpprog.dagger;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Preconditions;
+import ir.mpprog.dagger.module.AppModule;
+import ir.mpprog.dagger.module.AppModule_ProvideCapitalizerFactory;
 import javax.annotation.Generated;
 
 @DaggerGenerated
@@ -31,8 +33,8 @@ public final class DaggerAppComponent implements AppComponent {
     return new Builder().build();
   }
 
-  private Repository repository() {
-    return new Repository(AppModule_ProvideCapitalizerFactory.provideCapitalizer(appModule));
+  private RepositoryImpl repositoryImpl() {
+    return new RepositoryImpl(AppModule_ProvideCapitalizerFactory.provideCapitalizer(appModule));
   }
 
   @Override
@@ -41,7 +43,7 @@ public final class DaggerAppComponent implements AppComponent {
   }
 
   private MyApplication injectMyApplication(MyApplication instance) {
-    MyApplication_MembersInjector.injectRepository(instance, repository());
+    MyApplication_MembersInjector.injectIRepository(instance, repositoryImpl());
     return instance;
   }
 

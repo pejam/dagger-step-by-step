@@ -5,13 +5,13 @@ import javax.inject.Inject
 class MyApplication {
 
     @Inject
-    lateinit var repository: Repository
+    lateinit var iRepository: IRepository
 
     fun runApp(){
         //repository = Repository()
         DaggerAppComponent.create().inject(this)
 
-        println(repository.getUsersName())
+        println(iRepository.getUsersName())
     }
 
     companion object {

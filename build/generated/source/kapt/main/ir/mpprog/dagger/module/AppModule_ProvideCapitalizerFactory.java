@@ -1,8 +1,9 @@
-package ir.mpprog.dagger;
+package ir.mpprog.dagger.module;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import ir.mpprog.dagger.Capitalizer;
 import javax.annotation.Generated;
 
 @DaggerGenerated

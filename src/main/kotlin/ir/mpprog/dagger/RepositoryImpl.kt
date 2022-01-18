@@ -2,11 +2,11 @@ package ir.mpprog.dagger
 
 import javax.inject.Inject
 
-class Repository @Inject constructor(
+class RepositoryImpl @Inject constructor(
     private val  capitalizer: Capitalizer
-) {
+) : IRepository {
 
-    fun getUsersName(): List<String> {
+    override fun getUsersName(): List<String> {
         return listOf("mamad", "gholi").map { capitalizer.capitalize(it) }
     }
 
