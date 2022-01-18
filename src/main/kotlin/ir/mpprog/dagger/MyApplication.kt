@@ -1,5 +1,7 @@
 package ir.mpprog.dagger
 
+import ir.mpprog.dagger.module.OsInfoModule
+import ir.mpprog.dagger.util.OsInfo
 import javax.inject.Inject
 
 class MyApplication {
@@ -7,11 +9,19 @@ class MyApplication {
     @Inject
     lateinit var iRepository: IRepository
 
+    @Inject
+    lateinit var osInfo: OsInfo
+
     fun runApp(){
         //repository = Repository()
-        DaggerAppComponent.create().inject(this)
+        DaggerAppComponent.builder()
+            .osInfoModule(OsInfoModule(System.getProperties()))
+            .build()
+            .inject(this)
 
         println(iRepository.getUsersName())
+
+        println("osInfo: $osInfo")
     }
 
     companion object {
